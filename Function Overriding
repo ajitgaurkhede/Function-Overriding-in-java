@@ -1,0 +1,171 @@
+
+   class Parent{
+
+
+
+	void add(int a , int b){
+		
+	System.out.println("Parent's add() method");
+	
+	
+	}
+	
+	Object  sum( String str ){
+	
+		System.out.println("Parent's object sum() method");
+		return null;
+	
+	}
+	
+	
+	/*Number sum( String str ){
+	
+		System.out.println("Parent's number sum() method");
+		return 0;
+	
+	}*/
+	
+	
+	protected void mul(){
+	
+		System.out.println("Parent's mul()");
+	
+	
+	}
+	
+	
+	void exceptionChecker() throws RuntimeException{
+	
+	
+	System.out.println("Exception Checker in Parent");
+	
+	
+	
+	}
+	
+	static void staticOverride(){
+	
+	System.out.println("staticOverride in Parent");
+	
+	
+	}
+	
+	private void sayHello(){
+	
+	System.out.println("SayHello in Parent");
+	
+	
+	}
+
+	
+
+
+
+}
+
+   class Child extends Parent{
+
+
+	void add(int a, int b){
+	
+		super.add(25,20); // use super keyword for access super class method using child class object
+	
+		System.out.println("Child's add() method");
+	
+	
+	}
+	
+	Integer sum( String str){
+	
+		System.out.println("Child's sum() method");
+		return 0;
+	
+	}
+	
+	
+	public void mul(){		// access modifier should be same level or higher level otherwise it will generate error 
+	
+		System.out.println("Child's mul()");
+	
+	
+	}
+
+
+	/* Rules of Exception in overriding 
+	
+	*if base class overriden method does not throws any Exception then u will allow only throws unchecked Exception during 		overriding the method
+	
+	*if base class overriden method throws any exeception then u will allow either you can leave or u can throw same or child 		level exception during overriding method */
+
+	void exceptionChecker()throws RuntimeException {
+	
+	
+	System.out.println("Exception Checker in Child");
+	
+	
+	}
+	
+	
+	static void staticOverride(){
+	
+	System.out.println("staticOverride() in child");
+	
+	
+	}
+	
+
+	
+	private void sayHello(){
+	
+	System.out.println("SayHello in Child");
+	
+	
+	}
+
+	
+	
+}
+
+
+  class Demo {
+
+
+	public static void main(String args[]){
+	
+		Child c = new Child();
+		
+		c.add(10,20);	// Parent + Child's add() method
+		
+		Parent p = new Parent();
+		
+		p.add(20,30);	// Parent's add() method
+		
+		Parent ref = new Child() ; // left side = compile time , Right side = Run time
+		
+		ref.add(40,50); // Child's add() method
+		
+		c.sum("String");	// Child's sum() method , covariant return type u can use 
+		
+		c.mul();
+		
+		c.exceptionChecker();
+		
+		c.staticOverride();	//staticOverride() in child
+
+		Parent pref = new Child();
+		
+		pref.staticOverride();	// staticOverride in Parent , this is method hidding , static () can not oveeride
+		
+		
+		
+		//c.sayHello(); private method can not override and final method also can not override
+		
+		
+		
+
+
+	}
+
+
+
+}
